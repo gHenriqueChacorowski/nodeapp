@@ -3,8 +3,8 @@
     <div class="row">
       <div class="col-md-7 d-flex vh-100 justify-content-center">
         <div class="col-md-5 align-self-center">
-          <h1 class="text-center mb-5">Notes App</h1>
-          <p class="text-center">Informe os dados abaixo para acessar</p>
+          <h1>Notes App</h1>
+          <p>Informe os dados abaixo para acessar</p>
 
           <b-form @submit.prevent="login">
             <b-form-group>
@@ -39,7 +39,7 @@ export default {
   data() {
     return {
       email: null,
-      senha: null,
+      senha: null
     };
   },
   methods: {
@@ -48,17 +48,16 @@ export default {
         await this.$auth.loginWith("local", {
           data: {
             email: this.email,
-            senha: this.senha,
-          },
+            senha: this.senha
+          }
         });
 
         this.$router.push("/");
-      } catch (err) {
-        console.log(err);
-        // this.err = err.response.data.message;
+      } catch (e) {
+        console.log(e);
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

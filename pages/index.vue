@@ -1,9 +1,17 @@
 <template>
-  <div class="container">
-    <p v-if="$fetchState.pending" class="text-center">Carregando ...</p>
-    <p v-else-if="$fetchState.error" class="text-center">Ocorreu um erro :</p>
+  <div>
+    <div class="text-center">
+      <b-button to="nota/new" variant="dark" size="lg" class="my-5"
+        >Nova Nota</b-button
+      >
+    </div>
+
+    <p v-if="$fetchState.pending" class="text-center">Carregando...</p>
+    <p v-else-if="$fetchState.error" class="text-center">
+      Ocorreu um erro :(
+    </p>
     <div v-else class="row">
-      <div class="col-md-3" v-for="nota of notas" :key="nota.id">
+      <div v-for="nota of notas" :key="nota.id" class="col-md-3">
         <div class="card bg-warning my-3">
           <div class="card-body">
             <h5 class="card-title">{{ nota.titulo }}</h5>
@@ -19,16 +27,20 @@
 
 <script>
 export default {
-  data() {
-    return {
-      notas: []
-    };
-  },
+  layout: "home",
+  middleware: "auth",
   async fetch() {
-    this.notas = await this.$axios
-      .get("nota/usuario/1")
+    await this.$store.dispatch("nota/list", this.usuario.id);
+  },
+  computed: {
+    usuario() {
+      return this.$store.state.auth.user;
+    },
+    notas() {
+      return this.$store.state.nota.list;
+    }
   }
-}
+};
 </script>
 
 <style>
