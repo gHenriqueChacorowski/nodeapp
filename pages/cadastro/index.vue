@@ -4,12 +4,21 @@
       <div class="col-md-7 d-flex vh-100 justify-content-center">
         <div class="col-md-5 align-self-center">
           <h1>Notes App</h1>
-          <p>Informe os dados abaixo para acessar</p>
+          <p>Informe os dados abaixo para se cadastrar</p>
 
-          <b-form @submit.prevent="login">
+          <b-form @submit.prevent="save">
             <b-form-group>
               <b-form-input
-                v-model="email"
+                v-model="usuario.nome"
+                type="text"
+                placeholder="Nome"
+                required
+              ></b-form-input>
+            </b-form-group>
+
+            <b-form-group>
+              <b-form-input
+                v-model="usuario.email"
                 type="email"
                 placeholder="E-mail"
                 required
@@ -18,15 +27,14 @@
 
             <b-form-group>
               <b-form-input
-                v-model="senha"
+                v-model="usuario.senha"
                 type="password"
                 placeholder="Senha"
                 required
               ></b-form-input>
             </b-form-group>
 
-            <b-button block type="submit" variant="primary">Acessar</b-button>
-            <b-button to="cadastro" variant="primary" block>Cadastrar-se</b-button>
+            <b-button block type="submit" variant="primary">Cadastrar</b-button>
           </b-form>
         </div>
       </div>
@@ -39,26 +47,25 @@
 export default {
   data() {
     return {
-      email: null,
-      senha: null
+      usuario: {
+        email: null,
+        senha: null,
+        nome: null
+      }
     };
   },
   methods: {
-    async login() {
+    async save() {
       try {
-        await this.$auth.loginWith("local", {
-          data: {
-            email: this.email,
-            senha: this.senha
-          }
-        });
+        await this.$axios.post(`usuario/new`, this.usuario)
 
-        this.$router.push("/");
+        this.$router.push("/login");
       } catch (e) {
         console.log(e);
+        throw new Error(e);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
