@@ -5,6 +5,9 @@ export const state = () => ({
 export const mutations = {
   SET_LIST(state, notas) {
     state.list = notas;
+  },
+  ADD(state, nota) {
+    state.list.push(nota);
   }
 };
 
@@ -18,6 +21,17 @@ export const actions = {
       return data;
     } catch (e) {
       console.log(e);
+    }
+  },
+  async add({ commit }, nota) {
+    try {
+      const { data } = await this.$axios.post(`nota`, nota);
+  
+      commit("ADD", nota);
+  
+      return data;
+    } catch (e) {
+      console.log(e)
     }
   }
 };

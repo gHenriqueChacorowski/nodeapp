@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-navbar type="dark" variant="dark">
-      <b-navbar-brand href="/">Notes App</b-navbar-brand>
+      <b-navbar-brand to="/">Notes App</b-navbar-brand>
       <b-navbar-toggle target="notesBar"></b-navbar-toggle>
 
       <b-collapse id="notesBar" is-nav>

@@ -10,7 +10,7 @@
     <p v-else-if="$fetchState.error" class="text-center">
       Ocorreu um erro :(
     </p>
-    <div v-else class="row">
+    <!-- <div v-else class="row">
       <div v-for="nota of notas" :key="nota.id" class="col-md-3">
         <div class="card bg-warning my-3">
           <div class="card-body">
@@ -21,7 +21,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
+    <template v-for="nota of notas">
+      {{nota}}
+    </template>
   </div>
 </template>
 
