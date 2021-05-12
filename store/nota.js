@@ -27,7 +27,7 @@ export const actions = {
     try {
       const { data } = await this.$axios.post(`nota`, nota);
   
-      commit("ADD", nota);
+      commit("ADD", data);
   
       return data;
     } catch (e) {

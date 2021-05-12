@@ -1,9 +1,12 @@
 <template>
-  <h1>Editando nota {{ $route.params.id }}</h1>
+  <notes-nota :id="parseInt($route.params.id)"></notes-nota>
 </template>
 
 <script>
-export default {};
+export default {
+  layout: "home",
+};
 </script>
 
-<style></style>
+<style>
+</style>
