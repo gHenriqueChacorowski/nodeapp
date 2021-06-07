@@ -1,5 +1,5 @@
 <template>
-  <notes-nota></notes-nota>
+  <n-nota></n-nota>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <notes-nota :id="parseInt($route.params.id)"></notes-nota>
+  <n-nota :id="parseInt($route.params.id)"></n-nota>
 </template>
 
 <script>

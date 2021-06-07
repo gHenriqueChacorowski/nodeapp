@@ -33,7 +33,7 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [],
+  buildModules: ["@nuxtjs/pwa"],
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -66,4 +66,20 @@ export default {
       }
     }
   },
+
+  pwa: {
+    icon: {
+      source: "icon.png"
+    },
+    meta: {
+      theme_color: "#FCC344",
+      appleStatusBarStyle: "black-translucent"
+    },
+    manifest: {
+      name: "Notes App TADS",
+      short_name: "Notes App",
+      description: "Aplicativo para anotações do curso de TADS",
+      lang: "pt-br"
+    }
+  }
 };
