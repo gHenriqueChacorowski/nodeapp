@@ -25,12 +25,11 @@
 
         <n-checklist
           v-if="exibirChecklist"
-          v-model="this.nota.checklists"
+          v-model="nota.checklists"
         ></n-checklist>
 
         <n-tag
-          v-model="this.nota.tags"
-          @tagConfirmada="addTag($event)"
+          v-model="nota.tags"
         ></n-tag>
 
         <b-button
@@ -93,14 +92,6 @@ export default {
     },
     habilitarChecklist(ativo) {
       this.exibirChecklist = ativo;
-    },
-    addTag(value) {
-      value.nome.forEach(element => {
-        const tag = {
-          nome: element
-        }
-        this.nota.tags.push(tag);
-      });
     },
     async adicionar() {
       const notaSaved = await this.$store.dispatch("nota/add", this.nota);
