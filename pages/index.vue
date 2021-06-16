@@ -42,7 +42,7 @@ export default {
       return this.$store.state.auth.user;
     },
     notas() {
-      return this.$store.state.nota;
+      return this.$store.state.nota.list;
     }
   },
   methods: {

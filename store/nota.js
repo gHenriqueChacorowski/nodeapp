@@ -39,13 +39,20 @@ export const actions = {
       console.log(e);
     }
   },
-  async edit({ commit }, nota) {
+  async edit({ commit }, dados) {
     try {
-      const { data } = await this.$axios.put(`nota/${nota.id}`, nota);
+      if (dados.isOnline) {
+        const { data } = await this.$axios.put(`nota/${dados.nota.id}`, dados.nota);
+        
+        commit("SET", data);
+  
+        return data;
+      } else {
+        commit("SET", dados.nota);
 
-      commit("SET", data);
+        return dados.nota;
+      }
 
-      return data;
     } catch (e) {
       console.log(e);
     }
